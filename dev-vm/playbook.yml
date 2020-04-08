@@ -32,3 +32,12 @@
 
     - role: gantsign.maven
     - role: gantsign.intellij
+    - role: gantsign.visual-studio-code
+      users:
+        - username: arl
+          visual_studio_code_extensions:
+            - streetsidesoftware.code-spell-checker
+            - vscjava.vscode-java-pack
+            - redhat.vscode-quarkus
+            - richardwillis.vscode-gradle
+            - donjayamanne.git-extension-pack
