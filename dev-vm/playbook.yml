@@ -1,7 +1,7 @@
 ---
 - hosts: all
   gather_facts: yes
-  become: true
+  become: yes
   vars_files:
     - vars/common.yml
   vars:
@@ -41,3 +41,9 @@
             - redhat.vscode-quarkus
             - richardwillis.vscode-gradle
             - donjayamanne.git-extension-pack
+    - role: shelleg.gradle
+      environment:
+        JAVA_HOME: "{{ ansible_facts['ansible_local']['java']['general']['home'] }}"
+      gradle_version: 6.3
+      gradle_checksum: sha256:0f316a67b971b7b571dac7215dcf2591a30994b3450e0629925ffcfe2c68cc5c
+      gradle_base_dir: /opt

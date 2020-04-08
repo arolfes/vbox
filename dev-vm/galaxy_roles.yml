@@ -5,3 +5,4 @@
 - src: gantsign.maven
 - src: gantsign.intellij
 - src: gantsign.visual-studio-code
+- src: shelleg.gradle
