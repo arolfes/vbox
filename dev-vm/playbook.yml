@@ -52,3 +52,5 @@
       gradle_base_dir: /opt
 
     - role: devoinc.ansible_graalvm_ce
+
+    - role: gantsign.minikube

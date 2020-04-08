@@ -7,3 +7,4 @@
 - src: gantsign.visual-studio-code
 - src: shelleg.gradle
 - src: devoinc.ansible_graalvm_ce
+- src: gantsign.minikube
