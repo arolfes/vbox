@@ -1,0 +1,6 @@
+---
+- src: geerlingguy.mysql
+- src: geerlingguy.docker
+- src: gantsign.java
+- src: gantsign.maven
+- src: gantsign.intellij

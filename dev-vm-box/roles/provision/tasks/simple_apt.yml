@@ -1,0 +1,43 @@
+---
+
+- name: "update apt cache and Install debconf-utils subversion git-core git-svn libsvn-java git gparted unity-tweak-tool libwebkitgtk-1.0-0 proxytunnel apt-transport-https ca-certificates curl wget software-properties-common sshpass fonts-hack-ttf ruby-full dirmngr vim"
+  apt:
+    update_cache: yes
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - debconf-utils
+    - subversion
+    - git
+    - git-core
+    - git-svn
+    - libsvn-java
+    - gparted
+    - unity-tweak-tool
+    - libwebkitgtk-1.0-0
+    - proxytunnel
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - wget
+    - software-properties-common
+    - sshpass
+    - fonts-hack-ttf
+    - ruby-full
+    - dirmngr
+    - vim
+    - keepassxc
+    - gnome-shell-extensions
+    - chrome-gnome-shell
+
+- name: "Update all packages to the latest version"
+  apt:
+    upgrade: dist
+
+- name: "Remove useless packages from the cache"
+  apt:
+    autoclean: yes
+
+- name: "Remove dependencies that are no longer required"
+  apt:
+    autoremove: yes

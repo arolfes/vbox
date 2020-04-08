@@ -1,0 +1,15 @@
+.idea
+.vagrant
+/settings.rb
+.project
+.settings
+.classpath
+target
+*.log
+.vagrant
+.tmp
+*.box
+localsettings.rb
+/build/
+tmp
+*/playbook.retry

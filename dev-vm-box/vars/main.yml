@@ -1,0 +1,5 @@
+---
+tmpDir: /vagrant/tmp
+
+swap_file_size: '8G'
+swap_file: '/swapfile_{{swap_file_size}}.img'
