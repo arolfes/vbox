@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  gather_facts: yes
+  gather_facts: true
   become: yes
   vars_files:
     - vars/common.yml
@@ -11,7 +11,7 @@
 
     - role: user
 
-    - role: geerlingguy.mysql
+    - name: geerlingguy.mysql
       mysql_root_username: 'root'
       mysql_root_password: 'nova1234-'
 
@@ -26,6 +26,16 @@
       java_fact_group_name: java_14
 
     - role: gantsign.java
+      java_version: '8'
+      java_is_default_installation: no
+      java_fact_group_name: java_8
+
+    - role: gantsign.java
+      java_version: '9'
+      java_is_default_installation: no
+      java_fact_group_name: java_9
+
+    - role: gantsign.java
       java_version: '11'
       java_is_default_installation: yes
       java_fact_group_name: java
@@ -33,6 +43,25 @@
     - role: gantsign.maven
 
     - role: gantsign.intellij
+      intellij_default_maven_home: '/opt/maven/apache-maven-3.6.3'
+      users:
+        - username: arl
+          intellij_jdks:
+            - name: '8'
+              home: '/opt/java/jdk8u252'
+            - name: '9'
+              home: '/opt/java/jdk-9.0.4'
+            - name: '11'
+              home: '/opt/java/jdk-11.0.7'
+            - name: '14'
+              home: '/opt/java/jdk-14.0.1'
+          intellij_default_jdk: '11'
+          intellij_codestyles:
+            - name: GoogleStyle
+              url: 'https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml'
+          intellij_default_codestyle: GoogleStyle
+          intellij_plugins:
+            - CheckStyle-IDEA
 
     - role: gantsign.visual-studio-code
       users:
@@ -51,6 +80,11 @@
       gradle_checksum: sha256:0f316a67b971b7b571dac7215dcf2591a30994b3450e0629925ffcfe2c68cc5c
       gradle_base_dir: /opt
 
-    - role: devoinc.ansible_graalvm_ce
+#    - role: devoinc.ansible_graalvm_ce
 
     - role: gantsign.minikube
+
+    - role: andrewrothstein.kubectl
+      kubectl_ver: v1.17.4
+
+    - role: gantsign.postman

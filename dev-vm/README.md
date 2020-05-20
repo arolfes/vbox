@@ -24,7 +24,6 @@ settings[:ssh_username] = 'DEFAULT_SSH_LOGIN_NAME'
 # wenn git_user_name nicht gesetzt ist wird dein username genommen
 settings[:git_user_name] = 'Dein Benutzer Namen Alias zB: arolfes'
 settings[:git_user_email] = 'Deine Email Adresse zB: arolfes@users.noreply.github.com'
-
 ```
 
 3. alte box entfernen

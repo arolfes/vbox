@@ -12,7 +12,6 @@ settings[:diskPath] = 'WINDOWS_PFAD_ZU_DEINEM_WORKSPACE\\workspace.vdi'
 #settings[:git_user_name] = 'Dein Benutzer Namen Alias <arolfes>'
 settings[:git_user_email] = 'Deine Email Adresse <arolfes@users.noreply.github.com>'
 
-
 # wenn ein verzeichnis zwischen vbox und windows geshared werden soll, dann einkommentieren
 #settings[:sharedFolder_Windows] = 'WINDOWS_PFAD_DES_ZU_VERZEICHNISSES_DAS_GESHARED_WERDEN_SOLL, zb. C:\\Wss\\vm\\shared_with_vbox'
 # Achtung: der mountpoint darf NICHT im home directory des users liegen
