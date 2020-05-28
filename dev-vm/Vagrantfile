@@ -39,10 +39,11 @@ end
 Vagrant.configure('2') do |config|
   ENV['LC_ALL']="en_US.UTF-8"
 
-  config.vm.box = "dev-vm-18.04-bionicbeaver64"
+  config.vm.box = "nt-dev-vm-20.04-focalfossal64"
+  
 
 
-  config.vbguest.auto_update = false
+  config.vbguest.auto_update = true
 
 
    # vagrant plugin: vagrant-persistent-storage
@@ -58,7 +59,7 @@ Vagrant.configure('2') do |config|
     vb.gui = true
     vb.name = "dev-vm-#{settings[:username]}"
     vb.memory = 16384
-    vb.cpus = 4
+    vb.cpus = 8
 #  parityDisk = 'C:\\Wss\\vbox\\workspace.vdi'
 
 #    if not File.exists?(parityDisk)
@@ -68,7 +69,7 @@ Vagrant.configure('2') do |config|
       # Attaching the disks using the SATA controller
 #      vb.customize ['storageattach', :id,  '--storagectl', 'SATA', '--port', 1, '--device', 0, '--type', 'hdd', "--nonrotational", "on", '--medium', parityDisk]
 
-    vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
+    vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
     vb.customize ["modifyvm", :id, "--vram", "256"]
     # Enabling the I/O APIC is required for 64-bit guest operating systems, especially Windows Vista;
     # it is also required if you want to use more than one virtual CPU in a VM.
@@ -112,13 +113,33 @@ Vagrant.configure('2') do |config|
     puts "* settings[:sharedFolder_Windows] is NOT defined."
   end
 
+  config.vm.provision 'fix vagrant apt cache problem', type: :shell, inline: <<~'EOM'
+    if [ ! -d "/var/cache/apt/archives/partial" ] ; then
+      echo "Directory /var/cache/apt/archives/partial DOES NOT exists."
+
+      if  [ -L "/var/cache/apt/archives" ] ; then
+        sudo rm -rf  /var/cache/apt/archives 
+      fi
+
+      sudo mkdir -p /var/cache/apt/archives/partial
+
+    fi
+    if [ ! -f "/var/cache/apt/archives/lock" ] ; then
+      sudo touch /var/cache/apt/archives/lock
+    fi
+
+    if [ `stat -c %a /var/cache/apt/archives/lock` != "640" ] ; then 
+      sudo chmod 640 /var/cache/apt/archives/lock
+    fi
+  EOM
+
   config.vm.provision 'preemptively give others write access to /etc/ansible/roles', type: :shell, inline: <<~'EOM'
     mkdir /etc/ansible/roles -p
     chmod o+w /etc/ansible/roles
   EOM
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "playbook.yml"
-    ansible.galaxy_role_file = "galaxy_roles.yml"
+    ansible.playbook = "/vagrant/playbook.yml"
+    ansible.galaxy_role_file = "/vagrant/galaxy_roles.yml"
     ansible.galaxy_roles_path = '/etc/ansible/roles'
     ansible.verbose = false
     ansible.compatibility_mode = "2.0"
