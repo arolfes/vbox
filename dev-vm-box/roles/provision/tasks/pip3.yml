@@ -1,20 +1,10 @@
 ---
 
-- name: "Install python3 python3-pip python-pip"
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - python3
-    - python3-pip
-    - python-pip
-
 - name: "Install python3 packages: awscli awsebcli ansible boto3 boto pylint"
   pip:
     name:
       - awscli
       - awsebcli
-      - ansible
       - boto3
       - boto
       - pylint

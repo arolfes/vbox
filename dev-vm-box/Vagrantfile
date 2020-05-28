@@ -12,34 +12,63 @@ Vagrant.configure('2') do |config|
   #vagrant plugin: vagrant-cachier
   config.cache.scope = :box
 
-  config.vm.hostname = 'dev-vm-18.04-bionicbeaver64'
-  config.vm.box = "kenrus/ubuntu1804"
-#  config.vm.box_version = "1.0.0"
+  config.vm.hostname = 'dev-vm-20.04-focalfossa64'
+#  config.vm.box = "peru/ubuntu-20.04-desktop-amd64"
+  config.vm.box = "chenhan/ubuntu-desktop-20.04"
 
 config.vm.provider "virtualbox" do |vb|
   vb.gui = true
-  vb.name = 'dev-vm-18.04-bionicbeaver64'
+  vb.name = 'dev-vm-20.04-focalfossa64'
   vb.memory = 10240
   vb.cpus = 6
-  vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
+  vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
   vb.customize ["modifyvm", :id, "--vram", "256"]
   # Enabling the I/O APIC is required for 64-bit guest operating systems, especially Windows Vista;
   # it is also required if you want to use more than one virtual CPU in a VM.
   vb.customize ["modifyvm", :id, "--ioapic", "on"]
+  vb.customize ["modifyvm", :id, "--apic", "on"]
   # Enable the use of hardware virtualization extensions (Intel VT-x or AMD-V) in the processor of your host system
   vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
   # Enable, if Guest Additions are installed, whether hardware 3D acceleration should be available
-  vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
-  vb.customize [ 'modifyvm', :id, '--usbehci', 'off' ]
-  vb.customize [ 'modifyvm', :id, '--usb', 'off' ]
-  vb.customize [ 'modifyvm', :id, '--audio', 'none' ]
+  vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+  vb.customize ["modifyvm", :id, "--pae", "on"]
+  vb.customize ["modifyvm", :id, "--longmode", "on"]
+  vb.customize ["modifyvm", :id, "--nestedpaging", "on"]
+  vb.customize ["modifyvm", :id, "--largepages", "on"]
+  vb.customize ["modifyvm", :id, "--vtxvpid", "on"]
+  vb.customize ["modifyvm", :id, "--vtxux", "on"]
+  vb.customize ["modifyvm", :id, "--spec-ctrl", "on"]
+  vb.customize ["modifyvm", :id, "--hpet", "on"]
 end
 
-# https://itsfoss.com/could-not-get-lock-error/
+  config.vm.provision 'fix vagrant apt cache problem', type: :shell, inline: <<~'EOM'
+    if [ ! -d "/var/cache/apt/archives/partial" ] ; then
+      echo "Directory /var/cache/apt/archives/partial DOES NOT exists."
 
+      if  [ -L "/var/cache/apt/archives" ] ; then
+        sudo rm -rf  /var/cache/apt/archives 
+      fi
 
+      sudo mkdir -p /var/cache/apt/archives/partial
+
+    fi
+    if [ ! -f "/var/cache/apt/archives/lock" ] ; then
+      sudo touch /var/cache/apt/archives/lock
+    fi
+
+    if [ `stat -c %a /var/cache/apt/archives/lock` != "640" ] ; then 
+      sudo chmod 640 /var/cache/apt/archives/lock
+    fi
+  EOM
+
+  config.vm.provision 'install ansible manually', type: :shell, inline: <<~'EOM'
+  # https://github.com/ansible/ansible/issues/55968
+  # https://github.com/ansible/ansible/issues/69203
+    sudo apt-get update
+    sudo apt-get -y --allow-unauthenticated install --fix-missing ansible
+  EOM
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "playbook.yml"
+    ansible.playbook = "/vagrant/playbook.yml"
     ansible.verbose = false
     ansible.compatibility_mode = "2.0"
   end
