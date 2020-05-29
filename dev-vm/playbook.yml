@@ -9,16 +9,17 @@
   roles:
     - role: prepare
 
-    - role: user
-
     - name: geerlingguy.mysql
       mysql_root_username: 'root'
       mysql_root_password: 'nova1234-'
+      mysql_python_package_debian: 'python3-mysqldb'
 
     - role: geerlingguy.docker
       docker_edition: 'ce'
       docker_package_state: latest
       docker_install_compose: true
+
+    - role: user
 
     - role: gantsign.java
       java_version: '14'
@@ -29,11 +30,6 @@
       java_version: '8'
       java_is_default_installation: no
       java_fact_group_name: java_8
-
-    - role: gantsign.java
-      java_version: '9'
-      java_is_default_installation: no
-      java_fact_group_name: java_9
 
     - role: gantsign.java
       java_version: '11'
@@ -49,8 +45,6 @@
           intellij_jdks:
             - name: '8'
               home: '/opt/java/jdk8u252'
-            - name: '9'
-              home: '/opt/java/jdk-9.0.4'
             - name: '11'
               home: '/opt/java/jdk-11.0.7'
             - name: '14'

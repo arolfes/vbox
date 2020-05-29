@@ -13,22 +13,23 @@
     - git-svn
     - libsvn-java
     - gparted
-    - unity-tweak-tool
-    - libwebkitgtk-1.0-0
+#    - unity-tweak-tool
+#    - libwebkitgtk-1.0-0
     - proxytunnel
     - apt-transport-https
     - ca-certificates
     - curl
     - wget
-    - software-properties-common
+#    - software-properties-common
     - sshpass
     - fonts-hack-ttf
-    - ruby-full
+#    - ruby-full
     - dirmngr
     - vim
     - keepassxc
     - gnome-shell-extensions
     - chrome-gnome-shell
+    - python3-pip
 
 - name: "Update all packages to the latest version"
   apt:
