@@ -22,7 +22,16 @@
 - name: "set timezone to europe Berlin"
   shell: 'timedatectl set-timezone Europe/Berlin'
 
+- import_tasks: firefox-beta.yml
 # - name: Create a ext4 filesystem on /dev/sdb1 and check disk blocks
 #  filesystem:
 #    fstype: ext4
 #    dev: /dev/sdb
+
+- name: "Update all packages to the latest version"
+  apt:
+    update_cache: yes
+    autoclean: yes
+    autoremove: yes
+    upgrade: dist
+

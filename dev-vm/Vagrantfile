@@ -60,14 +60,12 @@ Vagrant.configure('2') do |config|
     vb.name = "dev-vm-#{settings[:username]}"
     vb.memory = 16384
     vb.cpus = 8
-#  parityDisk = 'C:\\Wss\\vbox\\workspace.vdi'
 
-#    if not File.exists?(parityDisk)
-#      vb.customize ['createhd', '--filename', parityDisk,  '--size', 80 * 1024]
-#    end
+# doc config params
+# https://www.virtualbox.org/manual/ch08.html
 
-      # Attaching the disks using the SATA controller
-#      vb.customize ['storageattach', :id,  '--storagectl', 'SATA', '--port', 1, '--device', 0, '--type', 'hdd', "--nonrotational", "on", '--medium', parityDisk]
+    vb.customize ["modifyvm", :id, "--clipboard-mode", "bidirectional"]
+    vb.customize ["modifyvm", :id, "--draganddrop", "disabled"]
 
     vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
     vb.customize ["modifyvm", :id, "--vram", "256"]
