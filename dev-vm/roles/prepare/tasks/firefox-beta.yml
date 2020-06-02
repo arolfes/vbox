@@ -1,0 +1,12 @@
+---
+
+- name: "add Firefox Beta PPA"
+  apt_repository:
+    repo: ppa:mozillateam/firefox-next
+    state: present
+
+- name: "update apt-cache and install Firefox Beta"
+  apt:
+    update_cache: yes
+    name: firefox
+    state: latest
