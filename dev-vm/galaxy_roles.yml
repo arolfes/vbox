@@ -10,3 +10,5 @@
 - src: gantsign.minikube
 - src: andrewrothstein.kubectl
 - src: gantsign.postman
+- src: arolfes.soapui
+- src: arolfes.graalvm

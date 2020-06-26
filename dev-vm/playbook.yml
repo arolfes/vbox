@@ -56,6 +56,9 @@
           intellij_default_codestyle: GoogleStyle
           intellij_plugins:
             - CheckStyle-IDEA
+            - DBN
+            - Key Promoter X
+            - org.jetbrains.kotlin
 
     - role: gantsign.visual-studio-code
       users:
@@ -82,3 +85,15 @@
       kubectl_ver: v1.17.4
 
     - role: gantsign.postman
+
+    - role: arolfes.soapui
+
+    - role: arolfes.graalvm
+      graalvm_java_version: '8'
+      graalvm_is_default_installation: false
+      graalvm_fact_group_name: 'graalvm-java8'
+
+    - role: arolfes.graalvm
+      # with this option jdk 11 is still in path and not overruled by graalvm
+      # bash> java --version # shows jdk 11 from openjdk and not graalvm
+      graalvm_add_to_path: false
