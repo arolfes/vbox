@@ -1,6 +1,0 @@
----
-
-- import_tasks: prepare.yml
-- import_tasks: simple_apt.yml
-- import_tasks: pip3.yml
-- import_tasks: increase_swap.yml

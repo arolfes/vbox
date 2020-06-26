@@ -1,12 +1,10 @@
 ﻿
 # Vagrant Box
 
-Vagrant Box (VBox) basierend auf Ubuntu 18.04
+build up an fedora linux with vagrant and virtual box.
 
 ## Details
 
-Um sich eine VBox für die Entwicklung aufzusetzen, genügt das Verzeichnis dev-vm. Bitte diese [dev-vm/README.md](https://webgit.kabeldeutschland.de/projects/LUATOOL/repos/vbox/browse/dev-vm/README.md) beachten.  
-Wer die VBox von Grund auf bauen will, benötigt dev-vm-box. In der dorting [dev-vm-box/README.md](https://webgit.kabeldeutschland.de/projects/LUATOOL/repos/vbox/browse/dev-vm-box/README.md) sind mehr Details.
 
 ## Vorraussetzungen
 
@@ -40,7 +38,4 @@ http://mikefrobbins.com/2015/01/08/how-to-check-the-powershell-version-and-insta
 
 - https://app.vagrantup.com/boxes/search
 
-
-- https://app.vagrantup.com/fso/boxes/xenial64-desktop
-- https://app.vagrantup.com/fso/boxes/artful64-desktop
 

@@ -1,3 +1,0 @@
-localsshdir: '/vagrant/{{username}}/.ssh'
-remotesshdir: '/home/{{username}}/.ssh'
-bashrc_file: '/home/{{username}}/.bashrc'
