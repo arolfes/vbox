@@ -5,8 +5,8 @@ Vagrant Box (VBox) basierend auf Ubuntu 18.04
 
 ## Details
 
-Um sich eine VBox für die Entwicklung aufzusetzen, genügt das Verzeichnis dev-vm. Bitte diese [dev-vm/README.md](https://webgit.kabeldeutschland.de/projects/LUATOOL/repos/vbox/browse/dev-vm/README.md) beachten.  
-Wer die VBox von Grund auf bauen will, benötigt dev-vm-box. In der dorting [dev-vm-box/README.md](https://webgit.kabeldeutschland.de/projects/LUATOOL/repos/vbox/browse/dev-vm-box/README.md) sind mehr Details.
+Um sich eine VBox für die Entwicklung aufzusetzen, genügt das Verzeichnis dev-vm. Bitte diese [dev-vm/README.md](dev-vm/README.md) beachten.  
+Wer die VBox von Grund auf bauen will, benötigt dev-vm-box. In der dorting [dev-vm-box/README.md](dev-vm-box/README.md) sind mehr Details.
 
 ## Vorraussetzungen
 
