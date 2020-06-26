@@ -1,0 +1,13 @@
+---
+
+- name: "install google-chrome"
+  dnf:
+    enablerepo: fedora-workstation-repositories
+    name: google-chrome-stable
+    state: present
+
+- name: 'add chrome desktop shortcut'
+  template: src=google-chrome.desktop.j2 dest=/usr/share/applications/google-chrome.desktop
+
+- name: "google-chrome.desktop desktop-file-install"
+  shell: desktop-file-install /usr/share/applications/google-chrome.desktop

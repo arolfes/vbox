@@ -1,0 +1,70 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: true
+  vars_files:
+    - vars/main.yml
+  roles:
+    - role: provision
+    - role: chrome
+
+    - role: geerlingguy.postgresql
+      postgresql_python_library: python3-psycopg2
+
+# doesnt work for now      
+#    - role: geerlingguy.docker
+#      docker_edition: 'ce'
+#      docker_package_state: latest
+#      docker_install_compose: true
+# using podman
+# be aware docker-compose is not working with this solution
+    - role: andrewrothstein.podman
+      podman_include_docker_shim: True
+
+    - role: gantsign.java
+      java_version: '14'
+      java_is_default_installation: no
+      java_fact_group_name: java_14
+
+    - role: gantsign.java
+      java_version: '8'
+      java_is_default_installation: no
+      java_fact_group_name: java_8
+
+    - role: gantsign.java
+      java_version: '11'
+      java_is_default_installation: yes
+      java_fact_group_name: java
+
+    - role: gantsign.maven
+
+    - role: gantsign.intellij
+      intellij_default_maven_home: '/opt/maven/apache-maven-3.6.3'
+
+    - role: gantsign.visual-studio-code
+
+    - role: shelleg.gradle
+      environment:
+        JAVA_HOME: "{{ ansible_facts['ansible_local']['java']['general']['home'] }}"
+      gradle_version: 6.3
+      gradle_checksum: sha256:0f316a67b971b7b571dac7215dcf2591a30994b3450e0629925ffcfe2c68cc5c
+      gradle_base_dir: /opt
+
+    - role: gantsign.minikube
+
+    - role: andrewrothstein.kubectl
+
+    - role: gantsign.postman
+
+    - role: arolfes.soapui
+
+    - role: arolfes.graalvm
+      graalvm_java_version: '8'
+      graalvm_is_default_installation: false
+      graalvm_fact_group_name: 'graalvm-java8'
+
+# there is a bug with checksum 
+#    - role: arolfes.graalvm
+#      # with this option jdk 11 is still in path and not overruled by graalvm
+#      # bash> java --version # shows jdk 11 from openjdk and not graalvm
+#      graalvm_add_to_path: false

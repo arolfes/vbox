@@ -1,0 +1,15 @@
+---
+- src: geerlingguy.postgresql
+#- src: geerlingguy.docker
+- src: andrewrothstein.podman
+- src: gantsign.java
+- src: gantsign.maven
+- src: gantsign.intellij
+- src: gantsign.visual-studio-code
+- src: shelleg.gradle
+##- src: devoinc.ansible_graalvm_ce
+- src: gantsign.minikube
+- src: andrewrothstein.kubectl
+- src: gantsign.postman
+- src: arolfes.soapui
+- src: arolfes.graalvm

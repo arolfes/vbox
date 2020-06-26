@@ -1,0 +1,48 @@
+---
+
+
+- name: "delete /etc/resolv.conf"
+  file:
+    state: absent
+    path: '/etc/resolv.conf'
+  ignore_errors: True
+
+- name: "copy resolv.conf to /etc/resolv.conf"
+  copy:
+    src: '{{ role_path }}/files/resolv.conf'
+    dest: '/etc/resolv.conf'
+
+- name: update installed applications
+  dnf:
+    name: 
+      - '*'
+    skip_broken: yes
+    update_cache: yes
+    update_only: yes
+    state: latest
+
+- name: "install the 'Fedora Workstation' package group"
+  shell: "dnf group install 'Fedora Workstation' --skip-broken --best --allowerasing -y"
+  args:
+    warn: no
+
+- name: "systemctl set-default graphical"
+  shell: 'systemctl set-default graphical'
+
+- name: install subversion, git-svn, gparted, proxytunnel, ca-certificates, fonts-hack-ttf, keepassxc
+  dnf:
+    name:
+    - subversion
+    - git-svn
+    - gparted
+    - proxytunnel
+    - ca-certificates
+# currently not available    
+#    - fonts-hack-ttf
+    - keepassxc
+    state: present
+
+- name: Autoremove unneeded packages installed as dependencies
+  dnf:
+    autoremove: yes
+    state: absent
