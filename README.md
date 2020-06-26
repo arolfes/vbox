@@ -3,6 +3,13 @@
 
 build up an fedora linux with vagrant and virtual box.
 
+# how to build and run
+
+1) change dir into base-box
+`vbox> cd base-box`
+
+2) execute all 4 steps from [base-box/README.md](base-box/README.md)
+
 ## Details
 
 
@@ -12,9 +19,6 @@ build up an fedora linux with vagrant and virtual box.
   Sie dieser Link http://mikefrobbins.com/2015/01/08/how-to-check-the-powershell-version-and-install-a-new-version
   
 - [VirtualBox 6.1.2](https://www.virtualbox.org/)  
-  **Achtung:** Wenn man VirtualBox 5.2.6 verwendet, muss man ein anderes GuestAdditionsIso runter laden.  
-  *The Guest Additions which come with VirtualBox 5.2.6 and 5.1.32 do not work properly on Linux guests with 3D enabled.*  
-  https://www.virtualbox.org/wiki/Downloads
   
 - [Vagrant 2.2.7](https://www.vagrantup.com/)
 - Vagrant Plugins
