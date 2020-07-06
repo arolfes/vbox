@@ -1,0 +1,26 @@
+---
+- name: 'Check for tmpDir exists'
+  stat: "path={{ tmpDir }}"
+  register: p
+
+- name: 'create tmpDir if not exists'
+  file:
+    path: '{{ tmpDir }}'
+    state: directory
+  when: not p.stat.exists
+
+- name: "copy default keyboad layout file"
+  copy:
+    src: '{{ role_path }}/files/keyboard'
+    dest: '/etc/default/keyboard'
+
+- name: "copy default locale file"
+  copy:
+    src: '{{ role_path }}/files/locale'
+    dest: '/etc/default/locale'
+
+- name: "SELinux labeling issue. Relabel etc dir"
+  shell: 'restorecon -Rv /etc'
+
+- name: "set timezone to europe Berlin"
+  shell: 'timedatectl set-timezone Europe/Berlin'

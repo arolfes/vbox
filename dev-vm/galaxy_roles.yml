@@ -1,0 +1,4 @@
+---
+- src: gantsign.intellij_jdks
+- src: gantsign.intellij-plugins
+- src: gantsign.visual-studio-code-extensions

@@ -1,0 +1,22 @@
+settings[:username] = 'USERNAME'
+# Deinen private und public key musst du in dem Ordner ssh_keys ablegen 
+# - diese werden nicht mit eingecheckt
+# Die Dateien werden für den Pacmanager gebraucht damit man sich passwortfrei einloggen kann
+settings[:ssh_private_key_file_name] = 'DER_NAME_DEINER_SSH_PRIVATE_KEY_DATEI'
+settings[:ssh_public_key_file_name] = 'DER_NAME_DEINER_SSH_PUBLIC_KEY_DATEI'
+settings[:ssh_username] = 'DEIN_BENUTZER'
+settings[:diskPath] = 'WINDOWS_PFAD_ZU_DEINEM_WORKSPACE\\workspace.vdi'
+
+# dein git user name und deine email adresse
+# wenn git_user_name nicht gesetzt ist wird dein name genommen
+#settings[:git_user_name] = 'Dein Benutzer Namen Alias <arolfes>'
+settings[:git_user_email] = 'Deine Email Adresse <arolfes@users.noreply.github.com>'
+
+# wenn ein verzeichnis zwischen vbox und windows geshared werden soll, dann einkommentieren
+#settings[:sharedFolder_Windows] = 'WINDOWS_PFAD_DES_ZU_VERZEICHNISSES_DAS_GESHARED_WERDEN_SOLL, zb. C:\\Wss\\vm\\shared_with_vbox'
+# Achtung: der mountpoint darf NICHT im home directory des users liegen
+# Das funktioniert nicht settings[:sharedFolder_MountPoint] = '/home/settings[:username]/shared_with_windows'
+# Grund: das mounten des shared folders erfolgt bevor der neue User erzeugt wird!
+#settings[:sharedFolder_MountPoint] = 'LINUX_PFAD_DES_MOUNT_POINTS_FUER_GESHAREDTEN_FOLDER, zb /shared_with_windows'
+
+

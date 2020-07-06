@@ -10,6 +10,10 @@ build up an fedora linux with vagrant and virtual box.
 
 2) execute all 4 steps from [base-box/README.md](base-box/README.md)
 
+3) change dir to dev-vm
+
+4) execute all 4 steps from [dev-vm/README.md](dev-vm/README.md)
+
 ## Details
 
 

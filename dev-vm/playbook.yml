@@ -1,0 +1,49 @@
+---
+- hosts: all
+  gather_facts: true
+  become: yes
+  vars_files:
+    - vars/common.yml
+  vars:
+
+  roles:
+    - role: prepare
+
+    - role: user
+
+    - role: gantsign.intellij_jdks
+      users:
+        - username: '{{ username }}'
+          intellij_jdks:
+            - name: '8'
+              home: '/opt/java/jdk8u252'
+            - name: '11'
+              home: '/opt/java/jdk-11.0.7'
+            - name: '14'
+              home: '/opt/java/jdk-14.0.1'
+          intellij_default_jdk: '11'
+          intellij_codestyles:
+            - name: GoogleStyle
+              url: 'https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml'
+          intellij_default_codestyle: GoogleStyle
+
+    - role: gantsign.intellij-plugins
+      users:
+        - username: '{{ username }}'
+          intellij_plugins:
+            - CheckStyle-IDEA
+            - DBN
+            - Key Promoter X
+            - org.jetbrains.kotlin
+            - com.redhat.devtools.intellij.quarkus
+
+    - role: gantsign.visual-studio-code-extensions
+      users:
+        - username: '{{ username }}'
+          visual_studio_code_extensions:
+            - streetsidesoftware.code-spell-checker
+            - vscjava.vscode-java-pack
+            - redhat.vscode-quarkus
+            - richardwillis.vscode-gradle
+            - donjayamanne.git-extension-pack
+
