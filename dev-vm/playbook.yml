@@ -16,11 +16,11 @@
         - username: '{{ username }}'
           intellij_jdks:
             - name: '8'
-              home: '/opt/java/jdk8u252'
+              home: '/opt/java/jdk8u262-b10'
             - name: '11'
-              home: '/opt/java/jdk-11.0.7'
+              home: '/opt/java/jdk-11.0.8+10'
             - name: '14'
-              home: '/opt/java/jdk-14.0.1'
+              home: '/opt/java/jdk-14.0.2+12'
           intellij_default_jdk: '11'
           intellij_codestyles:
             - name: GoogleStyle

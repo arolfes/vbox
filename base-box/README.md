@@ -1,6 +1,5 @@
 # Basis VBox
 
-Baut aus einem Ubuntu Basis Image eine VBox
 Creates a Fedora Workstation with additional development tools from basic image [generic/fedora32](https://app.vagrantup.com/generic/boxes/fedora32) 
 
 ## box bauen

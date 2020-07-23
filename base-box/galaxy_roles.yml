@@ -1,7 +1,7 @@
 ---
 - src: geerlingguy.postgresql
 #- src: geerlingguy.docker
-- src: andrewrothstein.podman
+- src: ghyde.containers
 - src: gantsign.java
 - src: gantsign.maven
 - src: gantsign.intellij
